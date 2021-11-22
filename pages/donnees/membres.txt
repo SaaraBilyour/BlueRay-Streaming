@@ -1,0 +1,6 @@
+James;Bond;antonio.tavares@collegeahuntsic.qc.ca
+Saara;Bilyour;s.bilyour@hotmail.com
+Dani;Kai;dani@hotmail.com
+;;
+james;Jerey;james@hotmail.com
+Jeje;Kai;jeje@hotmail.com

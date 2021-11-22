@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="client\public\js\monJS.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="client\public\css\monCSS.css">
+    <title>Blue-Ray Cinema</title>
+</head>
+<body>
+
+    <!-- Menu de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-perso px-2 py-2 fixed-top">
+      <div class="container-fluid ">
+        <img src="img/icon/Blue.png" alt="Blue-Ray cinema" width="70" height="70">
+        <a class="navbar-brand" href="#">Blue-Ray Cinéma </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="accueil.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Séries Télévisées
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Animation</a></li>
+                <li><a class="dropdown-item" href="#">Comédie</a></li>
+                <li><a class="dropdown-item" href="#">Documentaire</a></li>
+                <li><a class="dropdown-item" href="#">Drama</a></li>
+                <li><a class="dropdown-item" href="#">Horreur</a></li>
+                <li><a class="dropdown-item" href="#">Romance</a></li>
+                <li><a class="dropdown-item" href="#">Science-Fiction</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Films
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Animation</a></li>
+                <li><a class="dropdown-item" href="#">Comédie</a></li>
+                <li><a class="dropdown-item" href="#">Documentaire</a></li>
+                <li><a class="dropdown-item" href="#">Drama</a></li>
+                <li><a class="dropdown-item" href="#">Horreur</a></li>
+                <li><a class="dropdown-item" href="#">Romance</a></li>
+                <li><a class="dropdown-item" href="#">Science-Fiction</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-dark" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+<!-- Fin de menu de navigation -->   
+    <div class="container">
+            <!-- Modal Enregistrer -->
+        <div class="modal fade" id="modalEnreg" tabindex="-1" aria-labelledby="ModalEnregLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="ModalEnregLabel">Nouveau membre</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3" id="formEnreg" action="serveur/pages/enregistrerMembres.php" method="POST">
+                        <div class="col-md-4">
+                          <label for="prenom" class="form-label">Prénom</label>
+                          <input type="text" class="form-control" id="prenom" name="prenom" value="" required>
+                        </div>
+                        <div class="col-md-4">
+                          <label for="nom" class="form-label">Nom</label>
+                          <input type="text" class="form-control" id="nom" name="nom" value="" required>
+                        </div>
+                        <div class="col-md-4">
+                                <label for="courriel" class="form-label">Courriel</label>
+                                <input type="email" class="form-control" id="courriel" name="courriel" value="" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="pass" class="form-label">Mot Passe</label>
+                          <input type="password" class="form-control" id="pass"  name="pass" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cpass" class="form-label">Confirmer mot passe</label>
+                            <input type="password" class="form-control" id="cpass"  name="cpass" required>
+                          </div>
+                        
+                        <div class="col-12">
+                          <button class="btn btn-primary" type="submit">Enregister</button>
+                        </div>
+                      </form>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Modal Connexion -->
+        <div class="modal fade" id="modalConnexion" tabindex="-1" aria-labelledby="ModalConnexionLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="ModalConnexionLabel">Connexion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3" id="formEnreg" action="serveur/pages/connexion.php" method="POST">
+                        <div class="col-md-4">
+                                <label for="courriel" class="form-label">Courriel</label>
+                                <input type="email" class="form-control" id="courrielc" name="courrielc" value="" required>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="pass" class="form-label">Mot Passe</label>
+                          <input type="password" class="form-control" id="passc"  name="passc" required>
+                        </div>
+                        <div class="col-12">
+                          <button class="btn btn-primary" type="submit">Connexion</button>
+                        </div>
+                      </form>
+                </div>
+            </div>
+            </div>
+        </div>
+      </div>
+
+<!-- Banner -->    
+<section class="bg-dark text-light p-5 text-center text-sm-start">
+  <div class="container">
+    <div class="d-sm-flex align-items-center justify-content-between">
+      <div>
+        <h1>Sélections <br><span class="text-warning"> Nouvelles et Rares </span><br>de Films et Séries télévisées</h1>
+        <button class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#modalEnreg">Devenir membre</button>
+        <button class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#modalConnexion">Connexion</button>
+      </div>
+      <img class="img-fluid w-50 d-none d-sm-block" src="img/icon/logo.svg" alt="Blue-Ray cinema" width="700" height="700">
+    </div>
+  </div>
+</section>
+
+
+      <!-- Modal Trailer -->
+      <div class="modal fade" id="trailer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Trailer</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a class="gallery_img" href="img/product-img/pro-big-1.jpg">
+                          <iframe width="560" height="315" src="https://www.youtube.com/embed/ickbVzajrk0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Modal Film Info -->
+      <div class="modal fade" id="film-info" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Info</h5>
+            </div>
+            <div class="modal-body">
+                <div class="carousel-inner">
+                  <h3>Titre: </h3> BeetJuice
+                  <h3>Catégorie: </h3> Comédie
+                  <h3>Réalisateur: </h3> Tim Burton
+                  <h3>Durée: </h3> 92 minutes.
+                  <h3>Prix: </h3> 5.99
+                  <h3>Image: </h3> Comédie
+                  <h3>Desciption: </h3> A couple of recently deceased ghosts contract the services of a \"bio-exorcist\" in order to remove the obnoxious new owners of their house
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<!-- New --> 
+<section class="text-dark p-2 text-center text-center category-novelles">
+<h1>Nouvelles</h1>
+</section>
+<!-- cards -->
+<section class="p-5">
+  <div class="container">
+    <div class = "row g-4">
+      <div class="col-md-3">
+        <div class="card bg-dark text-warning">
+          <div class="card-body">
+            <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+            <p>BeetJuice</p>
+            <div class="d-flex justify-content-between">
+              <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+              <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+              <spam class="text-warning">9.99$</spam>
+              <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-3">
+        <div class="card bg-dark text-warning">
+          <div class="card-body">
+            <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+            <p>BeetJuice</p>
+            <div class="d-flex justify-content-between">
+              <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+              <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+              <spam class="text-warning">9.99$</spam>
+              <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card bg-dark text-warning">
+          <div class="card-body">
+            <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+            <p>BeetJuice</p>
+            <div class="d-flex justify-content-between">
+              <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+              <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+              <spam class="text-warning">9.99$</spam>
+              <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card bg-dark text-warning">
+          <div class="card-body">
+            <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+            <p>BeetJuice</p>
+            <div class="d-flex justify-content-between">
+              <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+              <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+              <spam class="text-warning">9.99$</spam>
+              <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Comédie --> 
+<section class="text-warning p-2 text-center text-center bg-dark categories">
+  <h1>Comédie</h1>  </section>
+  <section class="p-5">
+    <div class="container">
+      <div class = "row g-4">
+        <div class="col-md-3">
+          <div class="card bg-dark text-warning">
+            <div class="card-body">
+              <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+              <p>BeetJuice</p>
+              <div class="d-flex justify-content-between">
+                <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+                <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+                <spam class="text-warning">9.99$</spam>
+                <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="card bg-dark text-warning">
+            <div class="card-body">
+              <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+              <p>BeetJuice</p>
+              <div class="d-flex justify-content-between">
+                <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+                <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+                <spam class="text-warning">9.99$</spam>
+                <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-3">
+          <div class="card bg-dark text-warning">
+            <div class="card-body">
+              <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+              <p>BeetJuice</p>
+              <div class="d-flex justify-content-between">
+                <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+                <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+                <spam class="text-warning">9.99$</spam>
+                <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-3">
+          <div class="card bg-dark text-warning">
+            <div class="card-body">
+              <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+              <p>BeetJuice</p>
+              <div class="d-flex justify-content-between">
+                <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+                <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+                <spam class="text-warning">9.99$</spam>
+                <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Action --> 
+<section class="text-warning p-2 text-center text-center bg-dark categories">
+  <h1>Action</h1>
+  </section>
+  <!-- cards -->
+  <section class="p-5">
+    <div class="container">
+      <div class = "row g-4">
+        <div class="col-md-3">
+          <div class="card bg-dark text-warning">
+            <div class="card-body">
+              <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+              <p>BeetJuice</p>
+              <div class="d-flex justify-content-between">
+                <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+                <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+                <spam class="text-warning">9.99$</spam>
+                <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="card bg-dark text-warning">
+            <div class="card-body">
+              <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+              <p>BeetJuice</p>
+              <div class="d-flex justify-content-between">
+                <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+                <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+                <spam class="text-warning">9.99$</spam>
+                <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-3">
+          <div class="card bg-dark text-warning">
+            <div class="card-body">
+              <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+              <p>BeetJuice</p>
+              <div class="d-flex justify-content-between">
+                <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+                <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+                <spam class="text-warning">9.99$</spam>
+                <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-3">
+          <div class="card bg-dark text-warning">
+            <div class="card-body">
+              <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+              <p>BeetJuice</p>
+              <div class="d-flex justify-content-between">
+                <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+                <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+                <spam class="text-warning">9.99$</spam>
+                <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- Romance --> 
+<section class="text-warning p-2 text-center text-center bg-dark categories">
+  <h1>Romance</h1>
+  </section>
+  <!-- cards -->
+  <section class="p-5">
+    <div class="container">
+      <div class = "row g-4">
+        <div class="col-md-3">
+          <div class="card bg-dark text-warning">
+            <div class="card-body">
+              <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+              <p>BeetJuice</p>
+              <div class="d-flex justify-content-between">
+                <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+                <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+                <spam class="text-warning">9.99$</spam>
+                <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="card bg-dark text-warning">
+            <div class="card-body">
+              <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+              <p>BeetJuice</p>
+              <div class="d-flex justify-content-between">
+                <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+                <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+                <spam class="text-warning">9.99$</spam>
+                <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-3">
+          <div class="card bg-dark text-warning">
+            <div class="card-body">
+              <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+              <p>BeetJuice</p>
+              <div class="d-flex justify-content-between">
+                <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+                <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+                <spam class="text-warning">9.99$</spam>
+                <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-3">
+          <div class="card bg-dark text-warning">
+            <div class="card-body">
+              <img src="img\movies\beetlejuice.jpg" class="card-img mb-3">
+              <p>BeetJuice</p>
+              <div class="d-flex justify-content-between">
+                <i class="bi bi-camera-reels card-link "data-bs-toggle="modal" data-bs-target="#trailer"></i>
+                <i class="bi bi-info-circle card-link" data-bs-toggle="modal" data-bs-target="#film-info"></i>
+                <spam class="text-warning">9.99$</spam>
+                <a href="" class="text-warning text-end"><i class="bi bi-cart-plus card-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- FAQ -->
+<section id="question" class="p-5">
+  <div class="container col-md-12">
+    <h2 class="text-center mb-4 text-dark">Questions</h2>
+    <div class="accordion accordion-flush">
+      <div class="accordion-item ">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button class="accordion-button collapsed bg-dark text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#question-one" aria-expanded="false" aria-controls="flush-collapseOne">
+            Question 1:
+          </button>
+        </h2>
+        <div id="question-one" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body bg-warning">Response1.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingTwo">
+          <button class="accordion-button collapsed bg-dark text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#question-two" aria-expanded="false" aria-controls="flush-collapseTwo">
+            Question 2:
+          </button>
+        </h2>
+        <div id="question-two" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body bg-warning">Response2.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingThree">
+          <button class="accordion-button collapsed bg-dark text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#question-three" aria-expanded="false" aria-controls="flush-collapseThree">
+            Question 3:
+          </button>
+        </h2>
+        <div id="question-three" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body bg-warning">Response3.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="text-white  justify-content-center" style="background-color: rgba(0, 0, 0);"">
+  <div class="container p-4">
+    <section>
+      <div class="row">
+        <div class="col-lg-4 col-md-12 mb-12 mb-md-0 justify-content-center">
+          <h5 class="text-uppercase text-center text-warning">Contact</h5>
+
+          <ul class="list-unstyled mb-0 ">
+            <li><i class="bi bi-telephone text-warning px-3 "></i>957-655-4324</li>
+            <li><i class="bi bi-envelope-open text-warning px-3"></i>blue-ray@cinema.ca</li>
+            <li><i class="bi bi-map text-warning px-3"></i>2233 Rue St-Hubert</li>
+            <li class="text-white px-5">Montréal, G2K 1B2</li>
+          </ul>
+        </div>
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-12 mb-md-0 text-center">
+
+          <ul class="list-unstyled mb-0 justify-content-start">
+            <li>
+              <a href="#" class="text-warning btn  btn-floating m-1"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="text-warning btn  btn-floating m-1"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="text-warning btn  btn-floating m-1"><i class="bi bi-twitter"></i></a>
+            </li>
+            <li>  <div class="">
+              Copyright &copy; 2021 Blue-Ray Cinema
+            </div>   
+            </li>
+          </ul>
+        </div>
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-12 mb-md-0 text-center">
+          <ul class="list-unstyled mb-lg-5">
+            <li>
+              <a href="#" class="text-warning"><i class="bi bi-arrow-up-circle h1"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</footer>
+<!-- Footer -->
+
+
+
+</body>
+</html>

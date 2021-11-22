@@ -1,0 +1,6 @@
+admin@videostreaming.ca;99999;1;A
+antonio.tavares@collegeahuntsic.qc.ca;12345;1;M
+s.bilyour@hotmail.com;123456;1;M
+dani@hotmail.com;dani;1;M
+james@hotmail.com;james;1;M
+jeje@hotmail.com;jeje;1;M

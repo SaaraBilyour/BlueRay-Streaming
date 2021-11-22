@@ -1,0 +1,232 @@
+<?php
+    require_once("includes/fichiers.inc.php");
+    if(!($fic_connexion=fopen(FICHIER_CONNEXION,"r"))){
+        echo "<br><br>Impossible de se connecter";
+        exit;
+    }
+    $courriel = $_POST['courrielc'];
+    $pass = $_POST['passc'];
+
+    $trouve = false;
+
+    $ligne = fgets($fic_connexion);
+    while(!feof($fic_connexion) && !$trouve){ // $Ligne = "antonio.tavares@collegeahuntsic.qc.ca;12345;1;M";
+        $tab = explode(";",$ligne); //$tab[0] le courriel, $tab[1] le mot de passe, $tab[2] le statut et $tab[3] le rôle
+        if($tab[0]==$courriel && $tab[1]==$pass){
+            $trouve = true;
+        }else{
+            $ligne = fgets($fic_connexion);
+        }
+    }
+    if($trouve){
+        if($tab[2] == "1"){
+            if(trim($tab[3])=="M"){
+                header('Location: ../../client/pages/membres.html');
+            }else  if(trim($tab[3])=="A"){
+                header('Location: ../../client/pages/admin.html');
+            }
+        }
+        else {
+            echo "Problème avec votre compte. Contactez l'administrateur";
+        }
+    }else {
+        echo "Problème de connexion vérifiez vos données.";
+    }
+?>
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="client\public\js\monJS.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../client/public/css/monCSS.css">
+    <title>Blue-Ray Cinema</title>
+</head>
+<body>
+    <!-- Menu de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-perso px-2 py-2 fixed-top">
+        <div class="container-fluid ">
+          <img src="../../img/icon/Blue.png" alt="Blue-Ray cinema" width="70" height="70">
+          <a class="navbar-brand" href="../../accueil.html">Blue-Ray Cinéma </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="../../accueil.html">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Séries Télévisées
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Animation</a></li>
+                  <li><a class="dropdown-item" href="#">Comédie</a></li>
+                  <li><a class="dropdown-item" href="#">Documentaire</a></li>
+                  <li><a class="dropdown-item" href="#">Drama</a></li>
+                  <li><a class="dropdown-item" href="#">Horreur</a></li>
+                  <li><a class="dropdown-item" href="#">Romance</a></li>
+                  <li><a class="dropdown-item" href="#">Science-Fiction</a></li>
+                </ul>
+              </li>
+  
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Films
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Animation</a></li>
+                  <li><a class="dropdown-item" href="#">Comédie</a></li>
+                  <li><a class="dropdown-item" href="#">Documentaire</a></li>
+                  <li><a class="dropdown-item" href="#">Drama</a></li>
+                  <li><a class="dropdown-item" href="#">Horreur</a></li>
+                  <li><a class="dropdown-item" href="#">Romance</a></li>
+                  <li><a class="dropdown-item" href="#">Science-Fiction</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-dark" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <section class="bg-dark text-light p-5 text-center text-sm-start">
+        <div class="container">
+          <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+              <h1>
+                <h1>Bienvenue sur votre compte, pour revenir à la page d'accueil principale cliquez accueil.</h1><br><br></h1>
+            </div>
+            <img class="img-fluid w-50 d-none d-sm-block" src="../../img/icon/logo.svg" alt="Blue-Ray cinema" width="700" height="700">
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+<section> 
+    <div class="container col-lg-4 col-md-12 mb-12 align-items-center">
+        <h1 class="text-center">Mon panier</h1>
+    <table class="table text-dark table-style">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Poster</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Prix</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td><a href="#" class="text-dark text-end"><i class="bi bi-x-circle card-link"></i></a></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td><a href="#" class="text-dark text-end"><i class="bi bi-x-circle card-link"></i></a></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+            <td><a href="#" class="text-dark text-end"><i class="bi bi-x-circle card-link"></i></a></td>
+          </tr>
+
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th scope="col">Sous-Total</th>
+              <th></th>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td></td>
+              <td scope="col">Taxes</td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <th></th>
+              <th></th>
+              <th scope="col">Total</th>
+              <th></th>
+            </tr>
+
+        </tbody>
+      </table>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-white  justify-content-center" style="background-color: rgba(0, 0, 0);"">
+    <div class="container p-4">
+      <section>
+        <div class="row">
+          <div class="col-lg-4 col-md-12 mb-12 mb-md-0 justify-content-center">
+            <h5 class="text-uppercase text-center text-warning">Contact</h5>
+  
+            <ul class="list-unstyled mb-0 ">
+              <li><i class="bi bi-telephone text-warning px-3 "></i>957-655-4324</li>
+              <li><i class="bi bi-envelope-open text-warning px-3"></i>blue-ray@cinema.ca</li>
+              <li><i class="bi bi-map text-warning px-3"></i>2233 Rue St-Hubert</li>
+              <li class="text-white px-5">Montréal, G2K 1B2</li>
+            </ul>
+          </div>
+  
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-12 mb-12 mb-md-0 text-center">
+  
+            <ul class="list-unstyled mb-0 justify-content-start">
+              <li>
+                <a href="#" class="text-warning btn  btn-floating m-1"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-warning btn  btn-floating m-1"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-warning btn  btn-floating m-1"><i class="bi bi-twitter"></i></a>
+              </li>
+              <li>  <div class="">
+                Copyright &copy; 2021 Blue-Ray Cinema
+              </div>   
+              </li>
+            </ul>
+          </div>
+  
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-12 mb-12 mb-md-0 text-center">
+            <ul class="list-unstyled mb-lg-5">
+              <li>
+                <a href="#" class="text-warning"><i class="bi bi-arrow-up-circle h1"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </footer>
+  <!-- Footer -->
+  
+</body>
+</html>
